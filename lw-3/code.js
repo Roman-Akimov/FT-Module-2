@@ -59,8 +59,10 @@ const student = new Student("Петров", "Сергей", [
   new Mark("Физика", 4)
 ]);
 
-alert(`Средняя оценка: ${student.getAverageMark()}`);
+alert(`Студент: ${student.lastName} ${student.firstName}\nСредняя оценка: ${student.getAverageMark()}`);
+
 student.addMark("Химия", 5);
-alert(`Оценки по предмету 'Химия': ${student.getMarksBySubject("Химия")}`);
+alert(`Добавлена оценка по 'Химия':\n${student.getMarksBySubject("Химия").join(', ')}`);
+
 student.removeMarksBySubject("Физика");
-alert(`Оценки после удаления по 'Физика': ${JSON.stringify(student.marks)}`);
+alert(`Оценки после удаления по 'Физика':\n${student.marks.map(mark => `${mark.subject}: ${mark.mark}`).join('\n')}`);

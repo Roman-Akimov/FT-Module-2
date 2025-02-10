@@ -1,57 +1,90 @@
 // 1. Функция для нахождения произведения двух максимальных из трёх чисел
-function productOfTwoMax(a, b, c) {
-  const nums = [a, b, c];
-  nums.sort((x, y) => y - x); // Сортировка по убыванию
-  return nums[0] * nums[1];
+alert(
+  "Задание 1. Напишите функцию, которая принимает три числовых параметра и возвращает произведение двух максимальных из них."
+);
+const a = Number(prompt("Введите 1 число:"));
+const b = Number(prompt("Введите 2 число:"));
+const c = Number(prompt("Введите 3 число:"));
+
+let result = getMaxValue(a, b, c);
+
+function getMaxValue(a, b, c) {
+  const arr = [a, b, c];
+  arr.sort((x, y) => y - x);
+  return arr[0] * arr[1];
 }
 
-const a = Number(prompt('Введите первое число:'));
-const b = Number(prompt('Введите второе число:'));
-const c = Number(prompt('Введите третье число:'));
-const productResult = productOfTwoMax(a, b, c);
-document.body.innerHTML += `<p>Произведение двух максимальных чисел: ${productResult}</p>`;
+alert("Произведение двух максимальных чисел: " + result);
 
-// 2. Функция с параметром по умолчанию
-function greet(name, rank = "рядовой") {
-  return `Здравствуйте, ${rank} ${name}`;
+/* 2. Объявите функцию, которая принимает на вход два параметра: имя и
+звание. Значение звания по умолчанию «рядовой».
+Продемонстрируйте вариант использования функции с передачей 1 и 2
+параметров. */
+
+alert(
+  "Задание 2. Объявите функцию, которая принимает на вход два параметра: имя и звание. Значение звания по умолчанию «рядовой». Продемонстрируйте вариант использования функции с передачей 1 и 2 параметров."
+);
+
+function ranks(name, rank = "рядовой") {
+  return `Здравия желаю, ${rank} ${name}!`;
 }
 
-// Вызовы функции
-const name1 = prompt('Введите имя:');
-document.body.innerHTML += `<p>${greet(name1)}</p>`;
-const name2 = prompt('Введите имя:');
-const rank = prompt('Введите звание (по умолчанию рядовой):') || 'рядовой';
-document.body.innerHTML += `<p>${greet(name2, rank)}</p>`;
+const nameP = prompt("Введите свое имя: ");
+const rankP =
+  prompt('Введите свое звание (по умолчанию "рядовой"): ') || "рядовой";
 
-// 3. Функция вызова переданного функционального выражения
-function executeFunction(func, ...args) {
-  return func(...args);
+alert(ranks(nameP, rankP));
+
+/* 3. Объявите функцию, которая принимает на вход функциональное
+выражение и набор параметров для его вызова, а возвращает результат
+вызова переданного функционального выражения. 
+*/
+
+alert(
+  "Задание 3. Объявите функцию, которая принимает на вход функциональное выражение и набор параметров для его вызова, а возвращает результат вызова переданного функционального выражения."
+);
+const n1 = Number(+prompt("Введите 1е число:"));
+const n2 = Number(+prompt("Введите 2е число:"));
+
+function funSum(fun, ...args) {
+  return fun(...args);
 }
+const Sum = (a, b) => a + b;
+alert(`Сумма введенных чисел: ${funSum(Sum, n1, n2)}`);
 
-const sum = (a, b) => a + b;
-const num1 = Number(prompt('Введите первое число для суммы:'));
-const num2 = Number(prompt('Введите второе число для суммы:'));
-const sumResult = executeFunction(sum, num1, num2);
-document.body.innerHTML += `<p>Результат суммы: ${sumResult}</p>`;
+/* 4. Объявите функцию, которая принимает на вход целые числа. Для
+чётных значений функция возвращает стрелочное выражение
+возведения числа в квадрат, а для нечётных – стрелочное выражение
+возведения в куб. */
 
-// 4. Функция для возврата стрелочных выражений
-function getArrowFunction(number) {
-  return number % 2 === 0
-    ? (n => n ** 2)
-    : (n => n ** 3);
+alert(
+  "Задание 4. Объявите функцию, которая принимает на вход целые числа. Для чётных значений функция возвращает стрелочное выражение возведения числа в квадрат, а для нечётных – стрелочное выражение возведения в куб."
+);
+const num = Number(prompt("Введите целое число:"));
+
+function getNumber(num) {
+  if (num % 2 === 0) {
+    return (n) => n ** 2;
+  } else {
+    return (n) => n ** 3;
+  }
 }
+const resultNumUn = getNumber(num);
+const resultNum = resultNumUn(num);
+alert(`Результат ${resultNum}`);
 
-const number1 = Number(prompt('Введите число для проверки четности:'));
-const evenOrOddFunction = getArrowFunction(number1);
-const calculationResult = evenOrOddFunction(number1);
-document.body.innerHTML += `<p>Результат вычисления: ${calculationResult}</p>`;
+// 5. Напишите рекурсивную функцию для расчёта факториала числа n.
+alert(
+  "Задание 5. Напишите рекурсивную функцию для расчёта факториала числа n."
+);
+const factorial = Number(prompt("Введите число для нахождения факториала:"));
 
-// 5. Рекурсивная функция для вычисления факториала
-function factorial(n) {
-  if (n <= 1) return 1;
-  return n * factorial(n - 1);
+function getFactorial(fac) {
+  if (fac === 1) {
+    return 1;
+  } else {
+    return fac * getFactorial(fac - 1);
+  }
 }
-
-const factorialInput = Number(prompt('Введите число для вычисления факториала:'));
-const factorialResult = factorial(factorialInput);
-document.body.innerHTML += `<p>Факториал числа ${factorialInput}: ${factorialResult}</p>`;
+const resFac = getFactorial(factorial);
+alert(`Факториал ${factorial} = ${resFac}.`);
